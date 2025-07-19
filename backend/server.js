@@ -24,3 +24,15 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+const db = require('./database/db');
+
+db.getConnection((err, connection) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err);
+  } else {
+    console.log('Conectado ao banco de dados com sucesso!');
+    connection.release(); // libera a conexão do pool
+  }
+});
+
