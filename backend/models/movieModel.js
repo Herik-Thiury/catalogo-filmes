@@ -20,6 +20,21 @@ function CriarFilme(dados, callback) {
   });
 }
 
+function listarFilmes(callback) {
+  const sql = 'SELECT * FROM movies';
+
+  db.query(sql, (err, resultados) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, resultados);
+  });
+}
+
+  
+
 module.exports = {
   CriarFilme,
+  listarFilmes
 };
+

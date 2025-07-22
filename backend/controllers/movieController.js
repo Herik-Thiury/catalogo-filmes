@@ -27,6 +27,22 @@ function cadastrarFilme(req, res) {
   });
 }
 
+const { listarFilmes } = require('../models/movieModel');
+
+function obterFilmes(req, res) {
+  listarFilmes((err, filmes) => {
+    if (err) {
+      console.error('Erro ao listar filmes:', err);
+      return res.status(500).json({ mensagem: 'Erro ao buscar os filmes.' });
+    }
+
+    res.status(200).json(filmes);
+  });
+}
+
+
 module.exports = {
-  cadastrarFilme
+  cadastrarFilme,
+  obterFilmes
 };
+
