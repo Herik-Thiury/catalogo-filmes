@@ -37,4 +37,4 @@ db.getConnection((err, connection) => {
 });
 
 const moviesRoutes = require('./routes/movies');
-app.use('/movies', moviesRoutes);
+app.use('/api/movies', moviesRoutes);
