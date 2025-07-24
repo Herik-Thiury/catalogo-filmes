@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/" element={<ListarFilmes />} />
         <Route path="/cadastro" element={<CadastrarFilme />} />
         <Route path="/editar/:id" element={<EditarFilme />} />
-        <Route path="/filme/:id" element={<DetalhesFilme />} />
+        <Route path="/filmes/:id" element={<DetalhesFilme />} />
       </Routes>
     </Router>
   );

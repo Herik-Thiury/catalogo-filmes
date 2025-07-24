@@ -1,6 +1,10 @@
-const { CriarFilme } = require("../models/movieModel");
-const { atualizarFilme } = require('../models/movieModel');
-const { deletarFilme } = require('../models/movieModel');
+const {
+  criarFilme,
+  listarFilmes,
+  buscarFilmePorId,
+  atualizarFilme,
+  deletarFilme
+} = require("../models/movieModel");
 
 // Função para lidar com a requisição POST /movies
 function cadastrarFilme(req, res) {
@@ -19,7 +23,7 @@ function cadastrarFilme(req, res) {
     poster_url,
   };
 
-  CriarFilme(novoFilme, (err, resultado) => {
+  criarFilme(novoFilme, (err, resultado) => {
     if (err) {
       console.error("Erro ao cadastrar filme:", err);
       return res.status(500).json({ mensagem: "Erro ao cadastrar o filme." });
@@ -34,7 +38,7 @@ function cadastrarFilme(req, res) {
   });
 }
 
-const { listarFilmes } = require("../models/movieModel");
+
 
 function obterFilmes(req, res) {
   listarFilmes((err, filmes) => {

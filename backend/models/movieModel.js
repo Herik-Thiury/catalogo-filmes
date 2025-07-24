@@ -1,7 +1,8 @@
 const db = require("../database/db");
 
+
 // Função que insere um novo filme no banco
-function CriarFilme(dados, callback) {
+function criarFilme(dados, callback) {
   const sql =
     "INSERT INTO movies (titulo, descricao, ano, genero, poster_url) VALUES (?, ?, ?, ?, ?)";
   const valores = [
@@ -81,7 +82,7 @@ function deletarFilme(id, callback) {
 }
 
 module.exports = {
-  CriarFilme,
+  criarFilme,
   listarFilmes,
   buscarFilmePorId,
   atualizarFilme,

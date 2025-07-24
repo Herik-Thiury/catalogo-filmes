@@ -8,8 +8,16 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,         // exemplo: 3306
   user: process.env.DB_USER,         // exemplo: 'root'
   password: process.env.DB_PASSWORD, // exemplo: 'senha123' ou ''
-  database: process.env.DB_NAME      // exemplo: 'catalogo_filmes'
+  database: process.env.DB_NAME,     // exemplo: 'catalogo_filmes'
+  waitForConnections: true,          // Permite que o pool espere por conexões disponíveis
+  connectionLimit: 10,               // Limite máximo de conexões no pool
+  queueLimit: 0                      // O número máximo de requisições em fila para conexões
 });
 
-// 3. Exportar o pool para ser usado em outros arquivos
+
+pool.on('error', (err) => {
+  console.error('Erro inesperado no pool de conexões do banco de dados:', err);
+});
+
+
 module.exports = pool;

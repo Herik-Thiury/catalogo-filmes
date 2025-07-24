@@ -8,11 +8,11 @@ function EditarFilme() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    releaseYear: '',
-    genre: '',
-    posterUrl: '',
+    titulo: '',        // Corrigido: de 'title' para 'titulo'
+    descricao: '',     // Corrigido: de 'description' para 'descricao'
+    ano: '',           // Corrigido: de 'releaseYear' para 'ano'
+    genero: '',        // Corrigido: de 'genre' para 'genero'
+    poster_url: '',    // Corrigido: de 'posterUrl' para 'poster_url'
   });
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -22,7 +22,14 @@ function EditarFilme() {
     const fetchMovieData = async () => {
       try {
         const data = await movieApi.getMovieById(id);
-        setFormData(data);
+        // Ao carregar, mapeia os dados do backend para o estado do formulário com as chaves corretas
+        setFormData({
+          titulo: data.titulo || '',
+          descricao: data.descricao || '',
+          ano: data.ano || '',
+          genero: data.genero || '',
+          poster_url: data.poster_url || '',
+        });
       } catch (err) {
         setError('Filme não encontrado ou erro ao carregar para edição.');
         console.error('Erro ao carregar filme para edição:', err);
@@ -47,7 +54,8 @@ function EditarFilme() {
     setError(null);
 
     try {
-      if (!formData.title || !formData.description || !formData.releaseYear || !formData.genre || !formData.posterUrl) {
+      // Validação no frontend com os nomes de chaves corrigidos
+      if (!formData.titulo || !formData.descricao || !formData.ano || !formData.genero || !formData.poster_url) {
         throw new Error("Por favor, preencha todos os campos.");
       }
       
@@ -75,24 +83,24 @@ function EditarFilme() {
       <h1>Editar Filme</h1>
       <form onSubmit={handleSubmit} className="movie-form">
         <div className="form-group">
-          <label htmlFor="title">Título:</label>
-          <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} required />
+          <label htmlFor="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" value={formData.titulo} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="description">Descrição:</label>
-          <textarea id="description" name="description" value={formData.description} onChange={handleChange} required></textarea>
+          <label htmlFor="descricao">Descrição:</label>
+          <textarea id="descricao" name="descricao" value={formData.descricao} onChange={handleChange} required></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="releaseYear">Ano de Lançamento:</label>
-          <input type="number" id="releaseYear" name="releaseYear" value={formData.releaseYear} onChange={handleChange} required />
+          <label htmlFor="ano">Ano de Lançamento:</label>
+          <input type="number" id="ano" name="ano" value={formData.ano} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="genre">Gênero:</label>
-          <input type="text" id="genre" name="genre" value={formData.genre} onChange={handleChange} required />
+          <label htmlFor="genero">Gênero:</label>
+          <input type="text" id="genero" name="genero" value={formData.genero} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="posterUrl">URL do Pôster:</label>
-          <input type="url" id="posterUrl" name="posterUrl" value={formData.posterUrl} onChange={handleChange} required />
+          <label htmlFor="poster_url">URL do Pôster:</label>
+          <input type="url" id="poster_url" name="poster_url" value={formData.poster_url} onChange={handleChange} required />
         </div>
         {error && <p className="error-message">{error}</p>}
         <div className="button-group">

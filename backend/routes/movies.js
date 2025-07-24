@@ -1,11 +1,13 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // ESTA LINHA É CRÍTICA: ELA DEFINE O 'router'
 
-const { cadastrarFilme, obterFilmes, obterFilmesPorID, editarFilme } = require('../controllers/movieController');
-const { excluirFilme } = require('../controllers/movieController');
-
-
-
+const {
+  cadastrarFilme,
+  obterFilmes,
+  obterFilmesPorID,
+  editarFilme,
+  excluirFilme
+} = require('../controllers/movieController');
 
 // Rota para cadastrar um novo filme
 router.post('/', cadastrarFilme);

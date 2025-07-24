@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import movieApi from '../api/filmes';
@@ -36,7 +35,7 @@ function ListarFilmes() {
   return (
     <div className="container">
       <h1>Catálogo de Filmes</h1>
-      <Link to="/cadastrar" className="button primary-button">
+      <Link to="/cadastro" className="button primary-button"> {/* Rota corrigida para /cadastro */}
         Cadastrar Novo Filme
       </Link>
 
@@ -46,9 +45,12 @@ function ListarFilmes() {
         <div className="movie-grid">
           {movies.map((movie) => (
             <div key={movie.id} className="movie-card">
-              <img src={movie.posterUrl} alt={movie.title} className="movie-poster" />
-              <h3>{movie.title} ({movie.releaseYear})</h3>
-              <p>{movie.genre}</p>
+              {/* Correções aqui: usando movie.poster_url e movie.titulo */}
+              <img src={movie.poster_url} alt={movie.titulo} className="movie-poster" />
+              {/* Correções aqui: usando movie.titulo e movie.ano */}
+              <h3>{movie.titulo} ({movie.ano})</h3>
+              {/* Correção aqui: usando movie.genero */}
+              <p>{movie.genero}</p>
               <Link to={`/filmes/${movie.id}`} className="button secondary-button">
                 Ver Detalhes
               </Link>

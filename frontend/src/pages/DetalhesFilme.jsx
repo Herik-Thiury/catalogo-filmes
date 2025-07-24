@@ -55,13 +55,16 @@ function DetalhesFilme() {
   return (
     <div className="container movie-detail-container">
       <Link to="/" className="back-link">← Voltar para a Lista</Link>
-      <h1>{movie.title} ({movie.releaseYear})</h1>
-      <div className="detail-content">
-        <img src={movie.posterUrl} alt={movie.title} className="detail-poster" />
+      {/* Correções aqui: usando movie.titulo e movie.ano */}
+      <h1>{movie.titulo} ({movie.ano})</h1>
+      <div className="detail-content"> 
+        {/* Correções aqui: usando movie.poster_url e movie.titulo */}
+        <img src={movie.poster_url} alt={movie.titulo} className="detail-poster" />
         <div className="detail-info">
-          <p><strong>Descrição:</strong> {movie.description}</p>
-          <p><strong>Gênero:</strong> {movie.genre}</p>
-          <p><strong>Ano de Lançamento:</strong> {movie.releaseYear}</p>
+          {/* Correções aqui: usando movie.descricao, movie.genero, movie.ano */}
+          <p><strong>Descrição:</strong> {movie.descricao}</p>
+          <p><strong>Gênero:</strong> {movie.genero}</p>
+          <p><strong>Ano de Lançamento:</strong> {movie.ano}</p>
           <div className="button-group">
             <Link to={`/editar/${movie.id}`} className="button primary-button">
               Editar
