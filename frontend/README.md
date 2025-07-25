@@ -1,70 +1,177 @@
-# Getting Started with Create React App
+# Catálogo de Filmes (Aplicação Fullstack CRUD)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma aplicação completa para gerenciar um catálogo de filmes, permitindo operações de Criar, Ler, Atualizar e Deletar (CRUD). Desenvolvido com um backend em Node.js e um frontend em ReactJS, utilizando um banco de dados MySQL.
 
-## Available Scripts
+## 🚀 Funcionalidades
 
-In the project directory, you can run:
+A aplicação permite ao usuário:
 
-### `npm start`
+* **Cadastrar** um novo filme com:
+    * Título
+    * Descrição
+    * Ano de Lançamento
+    * Gênero
+    * URL da Imagem do Pôster
+* **Listar** todos os filmes cadastrados.
+* **Visualizar detalhes** de um filme específico.
+* **Editar** as informações de um filme existente.
+* **Deletar** um filme do catálogo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tecnologias Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+* **Node.js**
+* **Express.js** (para a criação da API RESTful)
+* **MySQL2** (Driver MySQL para Node.js)
+* **dotenv** (para gerenciar variáveis de ambiente)
+* **cors** (para permitir requisições de diferentes origens)
 
-### `npm test`
+### Frontend
+* **ReactJS**
+* **React Router DOM** (para navegação entre as páginas)
+* **Hooks** (useState, useEffect) (para gerenciamento de estado e efeitos colaterais)
+* **Fetch API** (para consumo da API do backend)
+* **CSS Puro** (para estilização básica, aguardando refatoração para estilização avançada)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Banco de Dados
+* **MySQL** (Banco de dados relacional para persistência dos dados).
 
-### `npm run build`
+## 📋 Pré-requisitos
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* **Node.js** (versão 14 ou superior recomendada)
+* **npm** (Node Package Manager) ou **Yarn**
+* **MySQL Server** (ou MariaDB)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⚙️ Configuração e Instalação
 
-### `npm run eject`
+Siga os passos abaixo para configurar e rodar a aplicação localmente. O projeto deve funcionar localmente ao rodar os comandos indicados na documentação do projeto.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Clonar o Repositório
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone <URL_DO_SEU_REPOSITORIO>
+cd catalogo-filmes
+(Assumindo que este seja o diretório raiz do seu projeto.)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Configuração do Backend
+Navegue até o diretório backend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Bash
 
-## Learn More
+cd backend
+Instale as dependências do backend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Bash
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm install
+# ou
+yarn install
+Crie e configure o arquivo de variáveis de ambiente .env:
+Crie um arquivo chamado .env na raiz do diretório backend com o seguinte conteúdo, substituindo pelos seus dados de configuração do MySQL:
 
-### Code Splitting
+Snippet de código
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+PORT=3001
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=sua_senha_mysql # Deixe vazio se não tiver senha
+DB_NAME=catalogo_filmes
+Configure o Banco de Dados MySQL:
+Conecte-se ao seu servidor MySQL (via linha de comando, MySQL Workbench, phpMyAdmin, etc.) e execute os seguintes comandos SQL para criar o banco de dados e a tabela movies:
 
-### Analyzing the Bundle Size
+SQL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+CREATE DATABASE IF NOT EXISTS catalogo_filmes;
 
-### Making a Progressive Web App
+USE catalogo_filmes;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+CREATE TABLE IF NOT EXISTS movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    ano INT NOT NULL,
+    genero VARCHAR(100),
+    poster_url VARCHAR(255)
+);
+Inicie o servidor backend:
 
-### Advanced Configuration
+Bash
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+node server.js
+Você deverá ver mensagens como: Servidor rodando em http://localhost:3001 e Conectado ao banco de dados com sucesso!.
 
-### Deployment
+3. Configuração do Frontend
+Navegue de volta para o diretório raiz do projeto e depois para o diretório frontend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Bash
 
-### `npm run build` fails to minify
+cd ..
+cd frontend
+Instale as dependências do frontend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Bash
+
+npm install
+# ou
+yarn install
+Inicie o aplicativo frontend:
+
+Bash
+
+npm start
+O aplicativo deverá abrir automaticamente no seu navegador em http://localhost:3000.
+
+🚀 Como Usar a Aplicação
+Com o backend e o frontend rodando, acesse http://localhost:3000 no seu navegador.
+
+Utilize os links de navegação no cabeçalho ("Listar", "Cadastrar") ou os botões nas páginas para realizar as operações de CRUD:
+
+Listar Filmes: Veja todos os filmes cadastrados.
+
+Cadastrar Novo Filme: Preencha o formulário e adicione um novo filme.
+
+Ver Detalhes: Clique em um filme na lista para ver seus detalhes.
+
+Editar: Na página de detalhes, clique em "Editar" para modificar as informações do filme.
+
+Deletar: Na página de detalhes, clique em "Deletar" para remover um filme.
+
+🌐 Endpoints da API (Backend)
+Todos os endpoints da API são acessados em http://localhost:3001/api/movies.
+
+GET /api/movies - Lista todos os filmes.
+
+GET /api/movies/:id - Retorna os detalhes de um filme específico.
+
+POST /api/movies - Cadastra um novo filme.
+
+PUT /api/movies/:id - Atualiza um filme existente.
+
+DELETE /api/movies/:id - Deleta um filme específico.
+
+📁 Estrutura do Projeto
+catalogo-filmes/
+├── backend/
+│   ├── controllers/      # Lógica dos controladores da API
+│   ├── database/         # Configuração da conexão com o banco de dados
+│   ├── models/           # Modelos de interação com o banco de dados
+│   ├── routes/           # Definição das rotas da API
+│   ├── .env              # Variáveis de ambiente
+│   ├── server.js         # Ponto de entrada do servidor
+│   └── package.json      # Dependências e scripts do backend
+├── frontend/
+│   ├── public/           # Arquivos estáticos
+│   ├── src/
+│   │   ├── api/          # Funções para consumir a API do backend
+│   │   ├── components/   # Componentes reutilizáveis (ex: Header)
+│   │   ├── pages/        # Componentes das páginas da aplicação (Listar, Cadastrar, etc.)
+│   │   ├── styles/       # Estilos CSS globais
+│   │   ├── App.js        # Componente principal e configuração de rotas
+│   │   └── index.js      # Ponto de entrada do React
+│   └── package.json      # Dependências e scripts do frontend
+└── README.md             # Este arquivo
+📄 Licença
+Este projeto está licenciado sob a licença MIT.
