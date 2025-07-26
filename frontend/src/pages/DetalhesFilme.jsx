@@ -1,4 +1,4 @@
-// src/pages/DetalhesFilme.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import movieApi from '../api/filmes';
@@ -55,13 +55,13 @@ function DetalhesFilme() {
   return (
     <div className="container movie-detail-container">
       <Link to="/" className="back-link">← Voltar para a Lista</Link>
-      {/* Correções aqui: usando movie.titulo e movie.ano */}
+     
       <h1>{movie.titulo} ({movie.ano})</h1>
       <div className="detail-content"> 
-        {/* Correções aqui: usando movie.poster_url e movie.titulo */}
+        
         <img src={movie.poster_url} alt={movie.titulo} className="detail-poster" />
         <div className="detail-info">
-          {/* Correções aqui: usando movie.descricao, movie.genero, movie.ano */}
+          
           <p><strong>Descrição:</strong> {movie.descricao}</p>
           <p><strong>Gênero:</strong> {movie.genero}</p>
           <p><strong>Ano de Lançamento:</strong> {movie.ano}</p>

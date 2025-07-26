@@ -1,4 +1,4 @@
-// src/pages/EditarFilme.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import movieApi from '../api/filmes';
@@ -8,11 +8,11 @@ function EditarFilme() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    titulo: '',        // Corrigido: de 'title' para 'titulo'
-    descricao: '',     // Corrigido: de 'description' para 'descricao'
-    ano: '',           // Corrigido: de 'releaseYear' para 'ano'
-    genero: '',        // Corrigido: de 'genre' para 'genero'
-    poster_url: '',    // Corrigido: de 'posterUrl' para 'poster_url'
+    titulo: '',        
+    descricao: '',     
+    ano: '',           
+    genero: '',        
+    poster_url: '',    
   });
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
